@@ -55,7 +55,7 @@ class UserDelete extends React.Component {
         return (    <div><h2> User Delete </h2> <br/>
             
             <select name="username" onChange={this.handleChange} > 
-            <option selected="selected" value="">Select </option>
+            <option selected="selected" key="" value="">Select </option>
             {this.state.names.map(mov => 
             <option name="username" key={mov.username} value={mov.username}>{mov.username}</option>)}
             </select>

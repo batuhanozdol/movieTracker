@@ -5,7 +5,7 @@ class MovieUpdate extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            names:[],name:"",directorid:"",releaseDate:"",imdbRating:"",duration:""   
+            names:[],name:"",directorid:"",releaseDate:"",imdbRating:"",duration:"",genre:""   
         };
         this.login = this.login.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -24,7 +24,8 @@ class MovieUpdate extends React.Component {
             directorid: this.state.directorid,
             releaseDate: this.state.releaseDate,
             imdbRating: this.state.imdbRating,
-            duration: this.state.duration
+            duration: this.state.duration,
+            genre:this.state.genre
         })
         }).then(data=> {              
                 if(data.error==undefined){
@@ -61,17 +62,21 @@ class MovieUpdate extends React.Component {
 //<input type="radio" name="type" value="user" onChange={this.handleChange}/>User <br/> <br/>
 render() {
     return (    <div><h2> Movie Update </h2>Name: <br/>
-        <select name="name" onChange={this.handleChange} > {this.state.names.map(mov => 
-            <option selected="selected" key={mov.name} value={mov.name}>{mov.name}</option>)}
-            </select> <br/>
+        <select name="name" onChange={this.handleChange} > 
+        <option selected="selected" value="" key="">Select</option>
+            {this.state.names.map(mov => 
+            <option key={mov.name} value={mov.name}>{mov.name}</option>)}
+        </select> <br/>
         Director Id:<br/> <input type="text" name="directorid" value={this.state.directorid} onChange={this.handleChange} /> <br/>
         ReleaseDate:<br/> <input type="date" name="releaseDate" value={this.state.releaseDate} onChange={this.handleChange} /> <br/>
         Rating:<br/> <input type="text" name="imdbRating" value={this.state.imdbRating} onChange={this.handleChange} /> <br/>
         Duration:<br/> <input type="text" name="duration" value={this.state.duration} onChange={this.handleChange} /> <br/>
-        <button class="button button1" type="button" onClick = {this.login}>
+        Genre:<br/> <input type="text" name="genre" value={this.state.genre} onChange={this.handleChange} /> <br/>
+
+        <button className="button button1" type="button" onClick = {this.login}>
             Update
         </button>
-        <Link to="/admin"> <button class="button button1" type="button">
+        <Link to="/admin"> <button className="button button1" type="button">
             Go to homepage
         </button></Link>
         </div>

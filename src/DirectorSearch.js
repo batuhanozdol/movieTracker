@@ -40,9 +40,9 @@ class DirectorSearch extends React.Component {
 render() {
     return (    <div><h4> Search Director </h4>
         Director Name:<br/> <input type="text" name="name" value={this.state.name} onChange={this.handleChange} /> 
-        <button  className="button button1" type="button" onClick = {this.login}>
+        <button  className="button1" type="button" onClick = {this.login}>
             Display
-        </button> <Link to="/admin"> <button  className="button button1" type="button">
+        </button> <Link to="/admin"> <button  className="button1" type="button">
             Go to homepage
         </button></Link> <br/> <br/> 
         <table className="fl-table" border="6">

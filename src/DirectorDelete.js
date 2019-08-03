@@ -5,16 +5,31 @@ class DirectorDelete extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            name:""   
+            name:"",names:[]  
         };
         this.login = this.login.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
     } 
-    
+    componentDidMount(){
+        fetch('http://localhost:8082/findDirectors', {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+        }).then(response=> response.json())
+        .then(data=> {              
+                if(data.error==undefined){
+                   this.setState({names:data})
+                }
+            }).catch(error => {
+                console.error(error);
+            });
+    }
     login(event) {
         fetch('http://localhost:8082/deleteDirector', {
-        method: 'POST',
+        method: 'DELETE',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
@@ -22,9 +37,7 @@ class DirectorDelete extends React.Component {
         body: JSON.stringify({
             name:this.state.name
         })
-        }).then(
-            response=> response.json())    
-            .then(data=> {              
+        }).then(data=> {              
                 if(data.error==undefined){
                     console.log("Success");
                     this.props.history.push("/admin");
@@ -42,8 +55,8 @@ class DirectorDelete extends React.Component {
     //<input type="radio" name="type" value="user" onChange={this.handleChange}/>User <br/> <br/>
     render() {
         return (    <div><h2> Director Delete </h2> <br/>
-    <select name="name" onChange={this.handleChange} > 
-        <option selected="selected" value="">Select </option>
+      <select name="name" onChange={this.handleChange} > 
+            <option selected="selected" key="" value="">Select </option>
     {this.state.names.map(mov => 
             <option name="name" key={mov.name} value={mov.name}>{mov.name}</option>)}
             </select> <br/>

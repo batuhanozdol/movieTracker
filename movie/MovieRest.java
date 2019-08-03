@@ -50,10 +50,12 @@ public class MovieRest {
         if (webService.findUs(authenticationRequest.getUsername()).equals("user")) {
             final String token = jwtTokenUtil.generateToken(userDetails);
             return ResponseEntity.ok(new JwtResponse(token));
+
         }
         else{
             final String token = jwtTokenUtil.generateToken(userDetails);
             return ResponseEntity.ok(new JwtResponse(token));
+
         }
     }
 

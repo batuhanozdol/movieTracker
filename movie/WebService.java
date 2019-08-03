@@ -96,7 +96,12 @@ public class WebService {
         }
     }
     public boolean updateMovie(Movie movie){
-        Movie temp = (Movie)movieRepo.findByName(movie.getName());
+        Movie temp=null;
+        for ( Movie mov:movieRepo.findAll()){
+            if(mov.getName().equals(movie.getName())){
+                temp=mov;
+            }
+        }
         if (temp.getName() != movie.getName()) {
             if (temp == null) {
                 return false;
